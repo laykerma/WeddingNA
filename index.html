@@ -524,7 +524,52 @@
     .modal.is-open { opacity: 1; visibility: visible; }
     .modal-panel { width: min(100%, 440px); max-height: 90vh; overflow-y: auto; background: var(--paper); transform: translateY(12px); transition: transform .25s ease; }
     .modal.is-open .modal-panel { transform: translateY(0); }
-    .lightbox-image { max-height: 76vh; max-width: 100%; object-fit: contain; }
+    .lightbox-image {
+      max-height: 78vh;
+      max-width: 90vw;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.5);
+      user-select: none;
+      -webkit-user-select: none;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    .lightbox-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: white;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color .2s, transform .2s;
+      z-index: 10;
+    }
+    .lightbox-btn:hover {
+      background: rgba(255,255,255,.3);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .lightbox-prev { left: -60px; }
+    .lightbox-next { right: -60px; }
+    @media (max-width: 640px) {
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .lightbox-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        background: rgba(0,0,0,.35);
+      }
+    }
     .toast { position: fixed; z-index: 120; left: 50%; bottom: 24px; padding: 11px 17px; color: white; background: var(--ink); font-size: 12px; opacity: 0; pointer-events: none; transform: translate(-50%, 10px); transition: opacity .2s ease, transform .2s ease; }
     /* Footer styles */
     .footer-quote {
@@ -824,10 +869,18 @@
   </main>
 
   <div id="lightbox" class="modal" role="dialog" aria-modal="true" aria-label="Ảnh cưới phóng to">
-    <div class="relative flex max-h-full w-full flex-col items-center">
-      <button class="modal-close absolute -right-1 -top-10 text-3xl font-light text-white" type="button" aria-label="Đóng ảnh">&times;</button>
+    <div class="relative flex max-h-full w-full max-w-4xl flex-col items-center justify-center">
+      <button class="modal-close absolute -right-1 -top-12 text-3xl font-light text-white p-2" type="button" aria-label="Đóng ảnh">&times;</button>
+      
+      <!-- Nút chuyển ảnh Trước / Sau -->
+      <button id="lightbox-prev" class="lightbox-btn lightbox-prev" type="button" aria-label="Ảnh trước">‹</button>
+      <button id="lightbox-next" class="lightbox-btn lightbox-next" type="button" aria-label="Ảnh tiếp theo">›</button>
+
       <img id="lightbox-img" class="lightbox-image" alt="Ảnh cưới phóng to">
-      <p class="mt-3 text-[10px] tracking-[.14em] text-white/80">NGỌC ANH &amp; NGUYỄN VĂN</p>
+      <div class="mt-3 flex items-center justify-between w-full max-w-xs px-2 text-[11px] tracking-[.14em] text-white/80">
+        <span>NGỌC ANH &amp; NGUYỄN VĂN</span>
+        <span id="lightbox-counter" class="font-mono">1 / 6</span>
+      </div>
     </div>
   </div>
 
@@ -1284,13 +1337,86 @@
         if (event.key === "Escape") $$(".modal.is-open").forEach(closeModal);
       });
 
-      $$("#gallery [data-image]").forEach(button => {
+      // Lightbox Gallery Slider & Swipe
+      const galleryButtons = $$("#gallery [data-image]");
+      const galleryImages = galleryButtons.map(btn => ({
+        src: btn.dataset.image,
+        alt: ($("img", btn) && $("img", btn).alt) || "Ảnh cưới Ngọc Anh & Nguyễn Văn"
+      }));
+      let currentImageIndex = 0;
+
+      function showLightboxImage(index) {
+        if (!galleryImages.length) return;
+        currentImageIndex = (index + galleryImages.length) % galleryImages.length;
+        const target = galleryImages[currentImageIndex];
+        const imgEl = $("#lightbox-img");
+        imgEl.style.opacity = "0.4";
+        imgEl.src = target.src;
+        imgEl.alt = target.alt;
+        imgEl.onload = () => { imgEl.style.opacity = "1"; };
+        $("#lightbox-counter").textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+      }
+
+      galleryButtons.forEach((button, idx) => {
         button.addEventListener("click", () => {
-          $("#lightbox-img").src = button.dataset.image;
-          $("#lightbox-img").alt = $("img", button).alt;
+          showLightboxImage(idx);
           openModal($("#lightbox"));
         });
       });
+
+      $("#lightbox-prev").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showLightboxImage(currentImageIndex - 1);
+      });
+      $("#lightbox-next").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showLightboxImage(currentImageIndex + 1);
+      });
+
+      // Hỗ trợ phím mũi tên bàn phím (Trái / Phải)
+      document.addEventListener("keydown", (e) => {
+        if (!$("#lightbox").classList.contains("is-open")) return;
+        if (e.key === "ArrowLeft") showLightboxImage(currentImageIndex - 1);
+        if (e.key === "ArrowRight") showLightboxImage(currentImageIndex + 1);
+      });
+
+      // Hỗ trợ vuốt chạm màn hình (Swipe on Mobile / Drag on Desktop)
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const lightboxModal = $("#lightbox");
+
+      lightboxModal.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      lightboxModal.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      // Hỗ trợ cuộn chuột (Mouse Wheel) để chuyển ảnh
+      let wheelTimeout = false;
+      lightboxModal.addEventListener("wheel", (e) => {
+        if (!lightboxModal.classList.contains("is-open") || wheelTimeout) return;
+        wheelTimeout = true;
+        setTimeout(() => { wheelTimeout = false; }, 300);
+        if (e.deltaY > 0 || e.deltaX > 0) {
+          showLightboxImage(currentImageIndex + 1);
+        } else {
+          showLightboxImage(currentImageIndex - 1);
+        }
+      }, { passive: true });
+
+      function handleSwipe() {
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 40) {
+          if (diff < 0) {
+            showLightboxImage(currentImageIndex + 1); // Vuốt sang trái -> Xem ảnh tiếp theo
+          } else {
+            showLightboxImage(currentImageIndex - 1); // Vuốt sang phải -> Xem ảnh trước
+          }
+        }
+      }
       const giftOpenBtn = $("#gift-open");
       if (giftOpenBtn) {
         giftOpenBtn.addEventListener("click", () => openModal($("#gift-modal")));
