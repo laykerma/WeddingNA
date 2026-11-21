@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fdfbf7">
+  <meta name="description" content="Thiệp cưới Ngọc Anh & Nguyễn Văn — 29.11.2026">
+  <meta property="og:title" content="Ngọc Anh & Nguyễn Văn | 29.11.2026">
+  <meta property="og:description" content="Trân trọng kính mời bạn đến chung vui trong ngày trọng đại của chúng mình.">
+  <meta property="og:type" content="website">
+  <title>Ngọc Anh & Nguyễn Văn — 29.11.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#FDFBF7",
+            ink: "#2A211C",
+            gold: "#B08D57",
+            golddeep: "#8C6A3B",
+            sand: "#E6DFD3"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            script: ["Dancing Script", "cursive"],
+            display: ["Playfair Display", "serif"],
+            serif: ["Playfair Display", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fdfbf7;
+      --ink: #2a211c;
+      --gold: #b08d57;
+      --sand: #e6dfd3;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      font-variant-numeric: lining-nums tabular-nums;
+      -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+      font-feature-settings: "lnum" 1, "tnum" 1;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.modal-open { overflow: hidden; }
+    button, input, select, textarea { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .font-light { font-weight: 400 !important; }
+    input::placeholder, textarea::placeholder { color: #756a61; opacity: 1; }
+    main { position: relative; z-index: 10; }
+    .ambient-canvas { position: fixed; z-index: 30; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .48; }
+    .grain {
+      position: relative;
+      isolation: isolate;
+    }
+    .grain::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      opacity: .14;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+    }
+    .cover {
+      position: fixed;
+      z-index: 80;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #fdfbf7 url("./wedding-invitation-bg.svg") center / contain no-repeat;
+      transition: opacity .9s cubic-bezier(.22,1,.36,1), visibility 0s linear 1.1s, transform 1.1s cubic-bezier(.22,1,.36,1), filter .9s ease;
+    }
+    .cover.is-open {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.06);
+      filter: blur(6px);
+      pointer-events: none;
+    }
+    /* Petal particles floating on cover */
+    .cover-petal {
+      position: absolute;
+      z-index: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50% 0 50% 50%;
+      background: linear-gradient(135deg, rgba(176,141,87,.25), rgba(210,180,120,.18));
+      pointer-events: none;
+      animation: petal-float linear infinite;
+    }
+    @keyframes petal-float {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
+      10% { opacity: .6; }
+      90% { opacity: .3; }
+      100% { transform: translateY(-110vh) rotate(360deg) scale(.4); opacity: 0; }
+    }
+    .cover-petal:nth-child(1) { left: 8%; bottom: -20px; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 0s; }
+    .cover-petal:nth-child(2) { left: 22%; bottom: -20px; width: 8px; height: 8px; animation-duration: 15s; animation-delay: 2s; }
+    .cover-petal:nth-child(3) { left: 45%; bottom: -20px; width: 14px; height: 14px; animation-duration: 18s; animation-delay: 4s; }
+    .cover-petal:nth-child(4) { left: 68%; bottom: -20px; width: 9px; height: 9px; animation-duration: 13s; animation-delay: 1s; }
+    .cover-petal:nth-child(5) { left: 85%; bottom: -20px; width: 11px; height: 11px; animation-duration: 16s; animation-delay: 3s; }
+    .cover-petal:nth-child(6) { left: 35%; bottom: -20px; width: 7px; height: 7px; animation-duration: 20s; animation-delay: 5s; }
+    .cover-petal:nth-child(7) { left: 55%; bottom: -20px; width: 13px; height: 13px; animation-duration: 14s; animation-delay: 6s; }
+    .cover-petal:nth-child(8) { left: 75%; bottom: -20px; width: 10px; height: 10px; animation-duration: 17s; animation-delay: 7s; }
+    .cover-frame {
+      z-index: 2;
+      width: min(88vw, 430px);
+      min-height: min(78vh, 640px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 28px;
+      border: 1px solid rgba(176, 141, 87, .42);
+      color: #2a211c;
+      text-align: center;
+      background: rgba(253, 251, 247, .65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 20px 60px rgba(44,37,32,.08), inset 0 0 80px rgba(255,255,255,.3);
+      transition: opacity .35s ease .4s, transform .65s cubic-bezier(.22,1,.36,1) .4s;
+    }
+    .cover.is-open .cover-frame { opacity: 0; transform: translateY(-10px); }
+    .cover-frame .eyebrow,
+    .cover-frame .cover-monogram,
+    .cover-frame .cover-divider,
+    .cover-frame .font-display,
+    .cover-frame .font-light,
+    .cover-frame .cover-open,
+    .cover-frame .cover-vertical-date {
+      animation: cover-fadein .9s cubic-bezier(.22,1,.36,1) both;
+    }
+    .cover-frame .eyebrow { animation-delay: .15s; }
+    .cover-frame .cover-monogram { animation-delay: .4s; }
+    .cover-frame .cover-divider { animation-delay: .6s; }
+    .cover-frame .font-display { animation-delay: .7s; }
+    .cover-frame .font-light { animation-delay: .8s; }
+    .cover-frame .cover-open { animation-delay: 1s; }
+    .cover-frame .cover-vertical-date { animation-delay: .5s; }
+    @keyframes cover-fadein {
+      0% { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .cover-frame::before, .cover-frame::after {
+      position: absolute;
+      inset: 9px;
+      border: 1px solid rgba(176, 141, 87, .28);
+      content: "";
+      pointer-events: none;
+    }
+    .cover-frame::after { inset: 17px; border-color: rgba(176, 141, 87, .17); }
+    .cover-vertical-date {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      color: rgba(140, 106, 59, .82);
+      font-size: 10px;
+      letter-spacing: .36em;
+      writing-mode: vertical-rl;
+      transform: translateY(-50%);
+    }
+    .cover-monogram { font-family: "Dancing Script", cursive; font-size: clamp(2.8rem, 11vw, 4.5rem); font-weight: 700; line-height: 1.15; }
+    .cover-divider { width: 72px; height: 1px; margin: 24px 0 18px; background: linear-gradient(90deg, transparent, #b08d57, transparent); }
+    .cover-open {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      margin-top: 37px;
+      padding: 0;
+      border: 0;
+      color: #6f512d;
+      background: transparent;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .12em;
+    }
+    .wax-seal {
+      position: relative;
+      display: grid;
+      width: 82px;
+      height: 82px;
+      place-items: center;
+      border: 1px solid rgba(255,238,199,.8);
+      border-radius: 50%;
+      color: #fff7e8;
+      background: radial-gradient(circle at 34% 26%, #d2b579, #a27a45 58%, #805b34);
+      box-shadow: inset 0 0 0 4px rgba(126,91,52,.24), 0 6px 18px rgba(91,65,37,.2);
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      letter-spacing: -.05em;
+      animation: seal-pulse 3.2s ease-in-out infinite;
+    }
+    .wax-seal::before, .wax-seal::after {
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(176,141,87,.28);
+      border-radius: 50%;
+      content: "";
+      animation: seal-glow 3.2s ease-out infinite;
+    }
+    .wax-seal::after { animation-delay: 1.6s; }
+    .cover-open-label { line-height: 1; }
+    .eyebrow { font-size: 10px; letter-spacing: .28em; text-transform: uppercase; }
+    .section-pad { padding: 86px 22px; }
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.2rem, 7.5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+    }
+    .gold-rule { display: flex; align-items: center; justify-content: center; gap: 12px; color: var(--gold); }
+    .gold-rule::before, .gold-rule::after { width: 36px; height: 1px; background: var(--gold); content: ""; opacity: .65; }
+    .hero-image {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(20, 16, 14, .35) 0%, rgba(20, 16, 14, .18) 35%, rgba(20, 16, 14, .5) 75%, rgba(20, 16, 14, .85) 100%),
+        url("./image/hero-wide.jpg") center center / cover no-repeat,
+        #75695c;
+    }
+    .hero-script { position: relative; display: inline-block; overflow: hidden; font-family: "Dancing Script", cursive; font-size: clamp(3.55rem, 13vw, 6.5rem); font-weight: 700; line-height: .96; }
+    .shimmer-text::after {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      color: transparent;
+      background: linear-gradient(105deg, transparent 38%, rgba(255,244,216,.9) 50%, transparent 62%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      content: attr(data-shimmer);
+      pointer-events: none;
+      white-space: nowrap;
+      transform: translateX(-130%);
+      animation: text-shimmer 6.5s ease-in-out infinite;
+    }
+    .countdown-cell { min-width: 62px; }
+    .countdown-number { font-family: "Cinzel", "Playfair Display", serif; font-size: 2.15rem; line-height: 1; }
+    .botanical { position: absolute; width: 116px; height: 116px; color: var(--gold); opacity: .7; pointer-events: none; }
+    .botanical.top-left { top: 18px; left: 14px; }
+    .botanical.bottom-right { right: 14px; bottom: 18px; transform: rotate(180deg); }
+    .botanical path { stroke-dasharray: 260; stroke-dashoffset: 260; transition: stroke-dashoffset 2.2s cubic-bezier(.22,1,.36,1); }
+    .botanical.is-visible path { stroke-dashoffset: 0; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .stagger-item { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+    .reveal.is-visible .stagger-item { opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .stagger-item:nth-child(2) { transition-delay: .12s; }
+    .reveal.is-visible .stagger-item:nth-child(3) { transition-delay: .24s; }
+    .reveal.is-visible .stagger-item:nth-child(4) { transition-delay: .36s; }
+    .reveal.is-visible .stagger-item:nth-child(5) { transition-delay: .48s; }
+    .reveal.is-visible .stagger-item:nth-child(6) { transition-delay: .6s; }
+    .shimmer-button { position: relative; isolation: isolate; overflow: hidden; }
+    .shimmer-button::after {
+      position: absolute;
+      top: -40%;
+      bottom: -40%;
+      left: -60%;
+      width: 36%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.68), transparent);
+      content: "";
+      pointer-events: none;
+      transform: skewX(-18deg);
+      animation: shimmer-sweep 5.8s ease-in-out infinite;
+    }
+    .shimmer-button:disabled::after { animation: none; }
+    @keyframes shimmer-sweep {
+      0%, 62% { opacity: 0; transform: translateX(0) skewX(-18deg); }
+      68% { opacity: .8; }
+      100% { opacity: 0; transform: translateX(470%) skewX(-18deg); }
+    }
+    @keyframes text-shimmer {
+      0%, 40% { transform: translateX(-130%); }
+      72%, 100% { transform: translateX(130%); }
+    }
+    @keyframes seal-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+    @keyframes seal-glow { 0% { opacity: .55; transform: scale(.92); } 85%,100% { opacity: 0; transform: scale(1.25); } }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.08); } 24% { transform: scale(1); } 38% { transform: scale(1.05); } 52% { transform: scale(1); } }
+    @keyframes calendar-glow { 0%,100% { opacity: .25; } 50% { opacity: .8; } }
+    @keyframes record-spin { to { transform: rotate(360deg); } }
+    @keyframes audio-wave { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+    .music-disc {
+      position: fixed;
+      z-index: 100;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 1px solid rgba(176,141,87,.55);
+      border-radius: 50%;
+      background: rgba(253,251,247,.92);
+      box-shadow: 0 5px 18px rgba(44,37,32,.16);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .music-disc:hover {
+      transform: scale(1.06);
+      box-shadow: 0 8px 24px rgba(44,37,32,.22);
+    }
+    .music-disc:active {
+      transform: scale(.95);
+    }
+    .music-disc.is-muted .vinyl-record {
+      opacity: .6;
+      filter: grayscale(.6);
+    }
+    .music-disc-slash {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 28px;
+      height: 2px;
+      background: #c84040;
+      border-radius: 2px;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+      z-index: 5;
+      box-shadow: 0 0 2px rgba(255,255,255,.8);
+    }
+    .music-disc.is-muted .music-disc-slash {
+      opacity: 1;
+    }
+    .vinyl-record {
+      position: relative;
+      display: grid;
+      width: 43px;
+      height: 43px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 50%;
+      color: #f9f1e2;
+      background: repeating-radial-gradient(circle, #493d32 0 2px, #594a3a 3px 4px, #332c25 5px 6px);
+    }
+    .vinyl-record::after {
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(255,239,205,.7);
+      border-radius: 50%;
+      background: #b08d57;
+      content: "";
+    }
+    .music-disc.is-playing .vinyl-record { animation: record-spin 3.8s linear infinite; }
+    .audio-bars { position: absolute; right: -3px; bottom: 2px; display: flex; height: 13px; align-items: center; gap: 2px; }
+    .audio-bars i { width: 2px; height: 100%; border-radius: 2px; background: #8c6a3b; transform: scaleY(.32); transform-origin: center bottom; }
+    .music-disc.is-playing .audio-bars i { animation: audio-wave .55s ease-in-out infinite alternate; }
+    .audio-bars i:nth-child(2) { animation-delay: .15s; }
+    .audio-bars i:nth-child(3) { animation-delay: .3s; }
+    .calendar-day { position: relative; display: grid; aspect-ratio: 1; place-items: center; font-family: "Cormorant Garamond", serif; font-size: 16px; font-weight: 500; }
+    .calendar-day.special-28::after, .calendar-day.special-29::after {
+      position: absolute;
+      inset: 5px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      content: "";
+    }
+    .calendar-day.special-28::after { animation: calendar-glow 2.8s ease-in-out infinite; }
+    .calendar-day.special-29 { isolation: isolate; color: white; font-weight: 600; }
+    .calendar-day.special-29::after { z-index: -1; border: 0; background: var(--gold); animation: heartbeat 2.8s ease-in-out infinite; }
+    .calendar-day.special-29::before {
+      position: absolute;
+      z-index: -1;
+      inset: 1px;
+      border: 1px solid rgba(176,141,87,.55);
+      border-radius: 50%;
+      content: "";
+      animation: calendar-glow 2.8s ease-in-out infinite;
+    }
+    .gallery-card { overflow: hidden; background: #eee8df; }
+    .gallery-card img { transition: transform .9s cubic-bezier(.22,1,.36,1); }
+    .gallery-card:hover img, .gallery-card:focus-visible img, .gallery-card:active img { transform: scale(1.055); }
+    .family-card { border: 1px solid rgba(176, 141, 87, .28); background: rgba(255,255,255,.7); border-radius: 6px; box-shadow: 0 8px 24px rgba(44, 37, 32, .04); }
+    .family-portrait { width: 156px; height: 184px; margin: 0 auto 22px; overflow: hidden; border: 4px solid #fff; outline: 1px solid rgba(176,141,87,.4); box-shadow: 0 8px 20px rgba(44,37,32,.12); }
+    .family-portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .family-portrait.bride img { object-position: center 24%; }
+    .family-portrait.groom img { object-position: 34% 24%; }
+    .event-card {
+      position: relative;
+      border: 1px solid rgba(176, 141, 87, .3);
+      border-radius: 6px;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(44, 37, 32, .04);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(176, 141, 87, .12);
+    }
+    .event-card::before {
+      position: absolute;
+      top: -1px;
+      left: 30px;
+      width: 50px;
+      height: 2px;
+      content: "";
+      background: var(--gold);
+    }
+    .event-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      color: var(--ink);
+    }
+    .event-card .event-time {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      font-variant-numeric: lining-nums tabular-nums;
+      -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+      font-feature-settings: "lnum" 1, "tnum" 1;
+      color: var(--golddeep);
+    }
+    .event-card .event-date {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .location-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .location-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .location-card {
+      border: 1px solid rgba(176, 141, 87, .28);
+      border-radius: 6px;
+      background: #ffffff;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(44, 37, 32, .04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .location-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(176, 141, 87, .12);
+    }
+    .location-title {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+    .form-field {
+      width: 100%;
+      border: 1px solid #d5c8b8;
+      border-radius: 6px;
+      padding: 12px 15px;
+      color: var(--ink);
+      background: #ffffff;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+    .form-field:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(176,141,87,.15);
+      background: #fffdf9;
+    }
+    .rsvp-label {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      color: var(--ink);
+    }
+    .rsvp-card-wrapper {
+      background: #ffffff;
+      border: 1px solid rgba(176, 141, 87, .25);
+      border-radius: 8px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(44,37,32,.04);
+    }
+    .modal {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(37, 31, 26, .65);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .modal.is-open { opacity: 1; visibility: visible; }
+    .modal-panel { width: min(100%, 440px); max-height: 90vh; overflow-y: auto; background: var(--paper); transform: translateY(12px); transition: transform .25s ease; }
+    .modal.is-open .modal-panel { transform: translateY(0); }
+    .lightbox-image { max-height: 76vh; max-width: 100%; object-fit: contain; }
+    .toast { position: fixed; z-index: 120; left: 50%; bottom: 24px; padding: 11px 17px; color: white; background: var(--ink); font-size: 12px; opacity: 0; pointer-events: none; transform: translate(-50%, 10px); transition: opacity .2s ease, transform .2s ease; }
+    /* Footer styles */
+    .footer-quote {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: .02em;
+      line-height: 1.5;
+    }
+    .footer-dev-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .08em;
+      color: rgba(255, 255, 255, 0.35);
+      transition: color .2s ease;
+      text-decoration: none;
+    }
+    .footer-dev-credit:hover {
+      color: rgba(211, 183, 127, 0.85);
+    }
+    @media (max-width: 480px) {
+      .eyebrow { letter-spacing: .2em; }
+      .cover-frame { min-height: min(76vh, 640px); padding: 38px 23px; }
+      .cover-vertical-date { right: 17px; font-size: 9px; }
+      .countdown-cell { min-width: 58px; }
+      .countdown-number { font-size: 2rem; }
+    }
+    @media (min-width: 768px) {
+      .section-pad { padding: 112px 32px; }
+      .botanical { width: 155px; height: 155px; }
+      .botanical.top-left { top: 30px; left: 30px; }
+      .botanical.bottom-right { right: 30px; bottom: 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      .ambient-canvas { display: none; }
+    }
+  </style>
+</head>
+<body class="grain">
+  <section id="cover" class="cover" aria-label="Bìa thiệp cưới">
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-petal" aria-hidden="true"></div>
+    <div class="cover-frame">
+      <span class="eyebrow text-ink/70">Save the date · 29 November 2026</span>
+      <h1 class="cover-monogram shimmer-text mt-8" data-shimmer="Ngọc Anh &amp; Nguyễn Văn" aria-label="Ngọc Anh và Nguyễn Văn"><span class="text-gold">Ngọc Anh</span> <span class="text-ink/60 text-[clamp(2rem,8vw,3.2rem)]">&amp;</span> <span>Nguyễn Văn</span></h1>
+      <div class="cover-divider"></div>
+      <p class="font-display text-sm tracking-[.25em]">29 . 11 . 2026</p>
+      <p class="mt-4 max-w-[250px] text-sm font-light leading-7 text-ink/85">Một ngày thật đẹp, chúng mình muốn cùng bạn lưu giữ.</p>
+      <button id="open-cover" class="cover-open shimmer-button" type="button" aria-label="Mở thiệp và bật nhạc nền">
+        <span class="wax-seal" aria-hidden="true">N <span class="text-[12px]">&amp;</span> V</span>
+        <span class="cover-open-label">MỞ THIỆP <span aria-hidden="true">→</span></span>
+      </button>
+      <span class="cover-vertical-date">NGỌC ANH &amp; NGUYỄN VĂN</span>
+    </div>
+  </section>
+
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+  <button id="music-toggle" class="music-disc is-muted" type="button" aria-label="Bật nhạc nền" title="Bật hoặc tắt nhạc nền">
+    <span class="vinyl-record" aria-hidden="true"><span class="text-[12px]">♥</span></span>
+    <span class="music-disc-slash" aria-hidden="true"></span>
+    <span class="audio-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+
+  <main>
+    <section class="hero-image relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20 text-center text-white">
+      <div class="absolute inset-4 border border-white/35 md:inset-8 z-10 pointer-events-none"></div>
+      <div class="relative z-10 max-w-3xl">
+        <p class="eyebrow mb-8 text-white/90">Trân trọng kính mời</p>
+        <p id="guest-name" class="mb-6 font-script text-4xl text-[#e2c58d] md:text-5xl">Quý Khách và Gia Đình</p>
+        <div class="flex flex-col items-center justify-center gap-1 md:flex-row md:gap-6">
+          <h1 class="hero-script shimmer-text" data-shimmer="Ngọc Anh" aria-label="Ngọc Anh">Ngọc Anh</h1>
+          <span class="my-1 text-[23px] text-[#e2c58d] md:my-0">♥</span>
+          <h2 class="hero-script shimmer-text" data-shimmer="Nguyễn Văn" aria-label="Nguyễn Văn">Nguyễn Văn</h2>
+        </div>
+        <p class="mt-7 text-sm font-light tracking-[.2em] text-white/90">CHỦ NHẬT · 29 THÁNG 11 · 2026</p>
+        <div class="mx-auto mt-10 w-fit border-y border-white/35 py-5">
+          <p class="mb-4 text-[9px] tracking-[.25em] text-white/75">CHỈ CÒN</p>
+          <div id="countdown" class="flex items-center gap-4 sm:gap-7" aria-label="Đếm ngược đến lễ cưới"></div>
+        </div>
+        <a href="#loi-moi" class="mt-9 inline-flex items-center gap-2 text-sm font-medium tracking-[.1em] text-white/90 hover:text-white">KHÁM PHÁ THIỆP <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section id="loi-moi" class="section-pad relative overflow-hidden text-center">
+      <svg class="botanical top-left" viewBox="0 0 140 140" fill="none" aria-hidden="true"><path d="M18 121C42 103 55 79 65 43M31 108c-9-5-17-15-17-24 12 0 21 7 24 17m7-27C32 69 28 56 31 45c12 5 19 16 17 28m13-27C53 34 55 20 62 12c9 9 11 22 3 33m4 28c10-11 24-16 35-12-5 12-17 19-30 17m-3 21c12-8 26-9 36-2-8 10-22 14-35 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="botanical bottom-right" viewBox="0 0 140 140" fill="none" aria-hidden="true"><path d="M18 121C42 103 55 79 65 43M31 108c-9-5-17-15-17-24 12 0 21 7 24 17m7-27C32 69 28 56 31 45c12 5 19 16 17 28m13-27C53 34 55 20 62 12c9 9 11 22 3 33m4 28c10-11 24-16 35-12-5 12-17 19-30 17m-3 21c12-8 26-9 36-2-8 10-22 14-35 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="reveal relative z-10 mx-auto max-w-xl">
+        <p class="eyebrow text-golddeep">With joyful hearts</p>
+        <h2 class="section-title mt-5 text-ink">Ngày chung đôi</h2>
+        <div class="gold-rule mt-5 text-sm">✦</div>
+        <p class="mx-auto mt-7 max-w-md text-[15px] font-light leading-8 text-ink/80">Tình yêu là hành trình đẹp nhất khi có những người thân yêu cùng sẻ chia. Chúng mình trân trọng kính mời bạn đến chung vui trong ngày trọng đại của hai gia đình.</p>
+        <p class="mt-7 font-script text-4xl text-golddeep">Thân mời bạn</p>
+      </div>
+    </section>
+
+    <section class="section-pad bg-[#f7f3ec]">
+      <div class="reveal mx-auto max-w-4xl">
+        <div class="mb-11 text-center">
+          <p class="eyebrow text-golddeep">Hai gia đình</p>
+          <h2 class="section-title mt-4">Gia đình chúng mình</h2>
+          <div class="gold-rule mt-4 text-sm">✦</div>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2 md:gap-8">
+          <article class="family-card stagger-item px-6 py-8 text-center md:px-10 md:py-10">
+            <div class="family-portrait bride"><img src="./image/1.jpg" alt="Chân dung cô dâu Ngọc Anh" loading="lazy"></div>
+            <p class="eyebrow text-golddeep">Nhà gái</p>
+            <div class="mx-auto my-5 h-px w-12 bg-gold/60"></div>
+            <div class="inline-block text-left">
+              <p class="text-base leading-[1.8]">Ông <span class="font-medium">Bùi Văn Hè</span> <span class="text-[14px] text-ink/70">(Cố phụ)</span><br>Bà <span class="font-medium">Giáp Thị Oanh</span></p>
+            </div>
+            <p class="mt-5 font-script text-4xl text-golddeep">Ngọc Anh</p>
+            <p class="mt-1 text-[10px] font-semibold tracking-[.2em] text-ink/70">CÔ DÂU</p>
+          </article>
+          <article class="family-card stagger-item px-6 py-8 text-center md:px-10 md:py-10">
+            <div class="family-portrait groom"><img src="./image/3.jpg" alt="Chú rể Nguyễn Văn trong lễ phục" loading="lazy"></div>
+            <p class="eyebrow text-golddeep">Nhà trai</p>
+            <div class="mx-auto my-5 h-px w-12 bg-gold/60"></div>
+            <div class="inline-block text-left">
+              <p class="text-base leading-[1.8]">Ông <span class="font-medium">Nguyễn Văn Ngọc</span><br>Bà <span class="font-medium">Phan Thị Nga</span></p>
+            </div>
+            <p class="mt-5 font-script text-4xl text-golddeep">Nguyễn Văn</p>
+            <p class="mt-1 text-[10px] font-semibold tracking-[.2em] text-ink/70">CHÚ RỂ</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad relative overflow-hidden">
+      <svg class="botanical top-left" viewBox="0 0 140 140" fill="none" aria-hidden="true"><path d="M18 121C42 103 55 79 65 43M31 108c-9-5-17-15-17-24 12 0 21 7 24 17m7-27C32 69 28 56 31 45c12 5 19 16 17 28m13-27C53 34 55 20 62 12c9 9 11 22 3 33m4 28c10-11 24-16 35-12-5 12-17 19-30 17m-3 21c12-8 26-9 36-2-8 10-22 14-35 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="reveal relative z-10 mx-auto max-w-4xl">
+        <div class="mb-12 text-center">
+          <p class="eyebrow text-golddeep">Save the date</p>
+          <h2 class="section-title mt-4">Thời gian &amp; địa điểm</h2>
+          <div class="gold-rule mt-4 text-sm">✦</div>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2">
+          <article class="event-card stagger-item px-6 py-9 text-center md:px-9">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 text-golddeep font-serif text-sm font-semibold tracking-wider bg-[#fdfbf7]">01</span>
+            <h3 class="mt-5">Bữa Cơm Thân Mật</h3>
+            <p class="event-time mt-3">16:00</p>
+            <div class="mx-auto my-3 h-px w-10 bg-gold/40"></div>
+            <p class="event-date">Thứ Bảy, ngày 28 tháng 11 năm 2026<br><span class="text-base text-ink/70 italic">(Tức ngày 20/10 năm Bính Ngọ)</span></p>
+          </article>
+          <article class="event-card stagger-item px-6 py-9 text-center md:px-9">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 text-golddeep font-serif text-sm font-semibold tracking-wider bg-[#fdfbf7]">02</span>
+            <h3 class="mt-5">Lễ Vu Quy</h3>
+            <p class="event-time mt-3">07:05</p>
+            <div class="mx-auto my-3 h-px w-10 bg-gold/40"></div>
+            <p class="event-date">Chủ Nhật, ngày 29 tháng 11 năm 2026<br><span class="text-base text-ink/70 italic">(Tức ngày 21/10 năm Bính Ngọ)</span></p>
+          </article>
+        </div>
+        <div class="location-grid mt-8">
+          <!-- Địa chỉ Nhà Gái -->
+          <div class="location-card">
+            <div>
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 text-golddeep font-serif text-xs font-semibold mb-3 bg-[#fdfbf7]">♀</span>
+              <p class="eyebrow text-golddeep font-semibold">Tư gia Nhà Gái</p>
+              <p class="location-title mx-auto mt-2 max-w-sm">Thôn Vũ Xá, Xã Cẩm Lý,<br>Tỉnh Bắc Ninh</p>
+            </div>
+            <div class="mt-6">
+              <a class="shimmer-button inline-flex items-center gap-2 border border-gold px-5 py-2.5 text-xs font-semibold tracking-[.08em] text-golddeep rounded-sm transition hover:bg-gold hover:text-white font-serif shadow-sm w-full justify-center" href="https://www.google.com/maps/place/21%C2%B013'38.5%22N+106%C2%B021'32.0%22E/@21.2273674,106.3588791,17z/data=!3m1!4b1!4m4!3m3!8m2!3d21.2273674!4d106.3588791?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                CHỈ ĐƯỜNG ĐẾN NHÀ GÁI
+              </a>
+            </div>
+          </div>
+
+          <!-- Địa chỉ Nhà Trai -->
+          <div class="location-card">
+            <div>
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 text-golddeep font-serif text-xs font-semibold mb-3 bg-[#fdfbf7]">♂</span>
+              <p class="eyebrow text-golddeep font-semibold">Tư gia Nhà Trai</p>
+              <p class="location-title mx-auto mt-2 max-w-sm">Số nhà 54, đường Nguyễn Huệ, Xóm 3 Duyên Yết, Xã Phú Xuyên, TP. Hà Nội</p>
+            </div>
+            <div class="mt-6">
+              <a class="shimmer-button inline-flex items-center gap-2 border border-gold px-5 py-2.5 text-xs font-semibold tracking-[.08em] text-golddeep rounded-sm transition hover:bg-gold hover:text-white font-serif shadow-sm w-full justify-center" href="https://www.google.com/maps/search/?api=1&query=S%E1%BB%91+nh%C3%A0+54%2C+%C4%91%C6%B0%E1%BB%9Dng+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+X%C3%B3m+3+Duy%C3%AAn+Y%E1%BA%BFt%2C+X%C3%A3+Ph%C3%BA+Xuy%C3%AAn%2C+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                CHỈ ĐƯỜNG ĐẾN NHÀ TRAI
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-[#f7f3ec]">
+      <div class="reveal mx-auto max-w-md">
+        <div class="mb-8 text-center">
+          <p class="eyebrow text-golddeep">The month of our wedding</p>
+          <h2 class="section-title mt-4">Tháng 11 · 2026</h2>
+        </div>
+        <div class="border border-sand bg-paper p-5 sm:p-8">
+          <div class="calendar-grid mb-2 text-center text-xs font-medium tracking-wide text-ink/70">
+            <span>CN</span><span>TH 2</span><span>TH 3</span><span>TH 4</span><span>TH 5</span><span>TH 6</span><span>TH 7</span>
+          </div>
+          <div id="calendar" class="calendar-grid text-center" aria-label="Lịch tháng 11 năm 2026"></div>
+          <div class="mt-6 flex justify-center gap-5 text-xs text-ink/75">
+            <span class="inline-flex items-center gap-2"><i class="h-3 w-3 rounded-full border border-gold"></i> Bữa cơm</span>
+            <span class="inline-flex items-center gap-2"><i class="h-3 w-3 rounded-full bg-gold"></i> Lễ Vu Quy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="reveal mx-auto max-w-5xl">
+        <div class="mb-10 text-center">
+          <p class="eyebrow text-golddeep">A few moments together</p>
+          <h2 class="section-title mt-4">Album ảnh cưới</h2>
+          <div class="gold-rule mt-4 text-sm">✦</div>
+        </div>
+        <div id="gallery" class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
+          <button class="gallery-card stagger-item group relative aspect-[4/5] text-left" data-image="./image/1.jpg" aria-label="Xem ảnh cưới 1"><img class="h-full w-full object-cover" src="./image/1.jpg" alt="Chân dung cô dâu Ngọc Anh" loading="lazy"><span class="absolute bottom-3 left-3 font-script text-2xl text-white drop-shadow">Our beginning</span></button>
+          <button class="gallery-card stagger-item group relative aspect-[4/5] text-left md:mt-10" data-image="./image/3.jpg" aria-label="Xem ảnh cưới 2"><img class="h-full w-full object-cover" src="./image/3.jpg" alt="Ngọc Anh và Nguyễn Văn trong lễ phục cưới" loading="lazy"></button>
+          <button class="gallery-card stagger-item group relative aspect-[4/5] text-left" data-image="./image/4.jpg" aria-label="Xem ảnh cưới 3"><img class="h-full w-full object-cover" src="./image/4.jpg" alt="Cô dâu chú rể giữa khung hoa tươi" loading="lazy"><span class="absolute bottom-3 left-3 font-script text-2xl text-white drop-shadow">A day to remember</span></button>
+          <button class="gallery-card stagger-item group relative aspect-[4/5] text-left md:mt-10" data-image="./image/6.jpg" aria-label="Xem ảnh cưới 4"><img class="h-full w-full object-cover" src="./image/6.jpg" alt="Khoảnh khắc tình cảm của đôi uyên ương" loading="lazy"></button>
+          <button class="gallery-card stagger-item group relative aspect-[4/5] text-left" data-image="./image/8.jpg" aria-label="Xem ảnh cưới 5"><img class="h-full w-full object-cover" src="./image/8.jpg" alt="Đôi uyên ương trong không gian lễ cưới" loading="lazy"></button>
+          <button class="gallery-card stagger-item group relative aspect-[4/5] text-left md:mt-10" data-image="./image/10.jpg" aria-label="Xem ảnh cưới 6"><img class="h-full w-full object-cover" src="./image/10.jpg" alt="Khoảnh khắc hạnh phúc của cô dâu chú rể" loading="lazy"><span class="absolute bottom-3 left-3 font-script text-2xl text-white drop-shadow">Forever starts here</span></button>
+        </div>
+        <p class="mt-4 text-center text-sm font-medium text-ink/80">Chạm vào ảnh để xem trọn vẹn khoảnh khắc</p>
+      </div>
+    </section>
+
+    <section class="section-pad relative overflow-hidden bg-[#f7f3ec]">
+      <svg class="botanical top-left" viewBox="0 0 140 140" fill="none" aria-hidden="true"><path d="M18 121C42 103 55 79 65 43M31 108c-9-5-17-15-17-24 12 0 21 7 24 17m7-27C32 69 28 56 31 45c12 5 19 16 17 28m13-27C53 34 55 20 62 12c9 9 11 22 3 33m4 28c10-11 24-16 35-12-5 12-17 19-30 17m-3 21c12-8 26-9 36-2-8 10-22 14-35 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="reveal relative z-10 mx-auto grid max-w-4xl gap-12 md:grid-cols-[.9fr_1.1fr] md:gap-16">
+        <div class="text-center md:pt-8 flex flex-col items-center justify-center">
+          <p class="eyebrow text-golddeep">We saved you a seat</p>
+          <h2 class="section-title mt-4">Bạn sẽ đến chứ?</h2>
+          <p class="mx-auto mt-5 max-w-sm text-base font-light leading-7 text-ink/75 font-serif italic">"Sự có mặt của bạn sẽ khiến ngày vui của chúng mình thêm trọn vẹn. Hãy gửi lời hồi âm và lời chúc nhé!"</p>
+        </div>
+        <div>
+          <div class="rsvp-card-wrapper">
+            <form id="rsvp-form" class="space-y-5">
+              <label class="block text-left">
+                <span class="rsvp-label">Tên khách mời</span>
+                <input class="form-field mt-2" name="guestName" type="text" autocomplete="name" maxlength="60" required placeholder="Ví dụ: Anh Tuấn / Gia đình chị Lan">
+              </label>
+              <label class="block text-left">
+                <span class="rsvp-label">Số điện thoại</span>
+                <input class="form-field mt-2" name="phone" type="tel" autocomplete="tel" maxlength="20" required placeholder="09xx xxx xxx">
+              </label>
+              <div class="grid grid-cols-2 gap-4">
+                <label class="block text-left">
+                  <span class="rsvp-label">Số người tham dự</span>
+                  <select class="form-field mt-2" name="attendees">
+                    <option value="1">1 người</option><option value="2">2 người</option><option value="3">3 người</option><option value="4">4 người</option>
+                  </select>
+                </label>
+                <label class="block text-left">
+                  <span class="rsvp-label">Xác nhận</span>
+                  <select class="form-field mt-2" name="attendance">
+                    <option value="yes">Mình sẽ đến</option><option value="no">Rất tiếc không thể đến</option>
+                  </select>
+                </label>
+              </div>
+              <label class="block text-left">
+                <span class="rsvp-label">Lời chúc gửi cô dâu &amp; chú rể</span>
+                <textarea class="form-field mt-2 resize-y" name="message" rows="3" maxlength="300" required placeholder="Viết đôi lời chúc phúc thật dễ thương..."></textarea>
+              </label>
+              <button type="submit" class="shimmer-button w-full rounded-md bg-ink py-3.5 text-base font-semibold tracking-[.1em] text-white transition hover:bg-golddeep shadow-md font-serif">GỬI LỜI CHÚC</button>
+            </form>
+          </div>
+          <div class="mt-9">
+            <p class="mb-4 text-xs font-semibold tracking-[.14em] text-golddeep font-serif">✦ LỜI CHÚC THÂN THƯƠNG ✦</p>
+            <div id="wishes" class="space-y-3" aria-live="polite"></div>
+            <p id="empty-wishes" class="text-sm font-medium italic text-ink/75 font-serif">Hãy là người đầu tiên gửi lời chúc nhé.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative overflow-hidden bg-[#241e19] px-5 pt-16 pb-12 text-center text-white border-t border-[#45382e]">
+      <div class="mx-auto max-w-2xl">
+        <p class="eyebrow text-[#d3b77f]">Ngọc Anh &amp; Nguyễn Văn</p>
+        <p class="footer-quote mx-auto mt-6 text-2xl md:text-3xl text-[#f5eedf]">“Sự hiện diện của Quý Khách là niềm vinh hạnh lớn nhất cho gia đình chúng tôi!”</p>
+        <div class="gold-rule mt-6 text-sm">♥</div>
+        <p class="mt-5 text-sm font-light tracking-wide text-white/80">Rất hân hạnh được đón tiếp!</p>
+        <p class="mt-6 text-[10px] tracking-[.3em] text-[#d3b77f]/70 uppercase">29 · 11 · 2026</p>
+        <a href="#tao-link" class="shimmer-button mt-8 inline-block border border-white/25 px-6 py-2.5 text-sm font-medium tracking-[.1em] text-white/90 rounded-sm transition hover:border-[#d3b77f] hover:text-[#d3b77f]">TẠO LINK MỜI RIÊNG</a>
+        
+        <div class="mt-14 pt-6 border-t border-white/10">
+          <a href="https://zalo.me/0567200111" target="_blank" rel="noopener noreferrer" class="footer-dev-credit" title="Nhắn tin Zalo tư vấn thiết kế website thiệp cưới">
+            <span>Thiết kế thiệp cưới online</span>
+            <span>·</span>
+            <span>Hotline/Zalo: 0567.200.111</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div id="lightbox" class="modal" role="dialog" aria-modal="true" aria-label="Ảnh cưới phóng to">
+    <div class="relative flex max-h-full w-full flex-col items-center">
+      <button class="modal-close absolute -right-1 -top-10 text-3xl font-light text-white" type="button" aria-label="Đóng ảnh">&times;</button>
+      <img id="lightbox-img" class="lightbox-image" alt="Ảnh cưới phóng to">
+      <p class="mt-3 text-[10px] tracking-[.14em] text-white/80">NGỌC ANH &amp; NGUYỄN VĂN</p>
+    </div>
+  </div>
+
+  <div id="gift-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="gift-title">
+    <div class="modal-panel relative p-7 text-center sm:p-9">
+      <button class="modal-close absolute right-4 top-3 text-2xl font-light text-ink/60" type="button" aria-label="Đóng">&times;</button>
+      <p class="eyebrow text-golddeep">A little love</p>
+      <h2 id="gift-title" class="mt-2 font-display text-3xl font-medium">Gửi quà mừng cưới</h2>
+      <p class="mt-3 text-sm font-light leading-6 text-ink/75">Tình cảm và lời chúc của bạn đã là món quà vô giá với chúng mình.</p>
+      <div class="mx-auto mt-6 grid h-48 w-48 place-items-center border border-sand bg-white p-3">
+        <div id="gift-qr" class="grid aspect-square w-full grid-cols-11 grid-rows-11 gap-[2px]" aria-label="Mã QR minh họa"></div>
+      </div>
+      <p class="mt-5 text-[9px] tracking-[.18em] text-golddeep">THÔNG TIN TÀI KHOẢN MINH HỌA</p>
+      <p class="mt-2 text-sm font-medium">Ngọc Anh &amp; Nguyễn Văn</p>
+      <p class="mt-1 text-sm text-ink/75">Số tài khoản: <span id="account-number">Đang cập nhật</span></p>
+      <button id="copy-account" class="shimmer-button mt-5 border border-gold px-5 py-2.5 text-sm font-semibold tracking-wide text-golddeep transition hover:bg-gold hover:text-white" type="button">SAO CHÉP SỐ TÀI KHOẢN</button>
+      <p class="mt-4 text-xs font-medium leading-5 text-ink/70">Vui lòng cập nhật ngân hàng, số tài khoản và mã QR thật trước khi chia sẻ thiệp.</p>
+    </div>
+  </div>
+  <div id="link-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="link-title">
+    <div class="modal-panel relative p-7 text-center sm:p-9">
+      <button class="modal-close absolute right-4 top-3 text-2xl font-light text-ink/60" type="button" aria-label="Đóng">&times;</button>
+      <p class="eyebrow text-golddeep">Personal invitation</p>
+      <h2 id="link-title" class="mt-2 font-display text-3xl font-medium">Tạo link mời riêng</h2>
+      <p class="mt-3 text-sm font-light leading-6 text-ink/75">Nhập tên khách mời để tạo đường link cá nhân, sẵn sàng gửi qua Zalo.</p>
+      <label for="link-guest-name" class="mt-6 block text-left text-sm font-medium tracking-wide text-ink">Tên khách mời</label>
+      <input id="link-guest-name" class="form-field mt-2" type="text" maxlength="80" autocomplete="off" placeholder="Ví dụ: Anh Tuấn">
+      <label for="invite-link" class="mt-4 block text-left text-sm font-medium tracking-wide text-ink">Đường link lời mời</label>
+      <input id="invite-link" class="form-field mt-2 text-xs" type="text" readonly placeholder="Link sẽ hiển thị tại đây">
+      <button id="copy-invite-link" class="shimmer-button mt-5 w-full bg-ink px-6 py-3.5 text-sm font-semibold tracking-[.1em] text-white transition hover:bg-golddeep disabled:cursor-not-allowed disabled:opacity-40" type="button" disabled>COPY LINK MỜI</button>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+      const weddingDate = new Date("2026-11-29T07:05:00+07:00");
+      let toastTimer;
+      let audioContext;
+      let musicTimer;
+      let musicOn = false;
+      let noteIndex = 0;
+      const notes = [261.63, 329.63, 392, 329.63, 293.66, 349.23, 440, 349.23];
+      const RSVP_WEBHOOK_URL = "";
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const ambientCanvas = $("#ambient-canvas");
+      const ambientContext = ambientCanvas.getContext("2d", { alpha: true });
+      const ambientParticles = [];
+      const celebrationParticles = [];
+      let ambientWidth = 0;
+      let ambientHeight = 0;
+      let ambientFrame = 0;
+      let previousFrameTime = 0;
+
+      function resizeAmbientCanvas() {
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+        ambientWidth = window.innerWidth;
+        ambientHeight = window.innerHeight;
+        ambientCanvas.width = Math.round(ambientWidth * pixelRatio);
+        ambientCanvas.height = Math.round(ambientHeight * pixelRatio);
+        ambientContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      }
+
+      function startAmbientParticles() {
+        if (prefersReducedMotion || !ambientContext) return;
+        const count = Math.min(38, Math.max(20, Math.round(window.innerWidth / 12)));
+        while (ambientParticles.length < count) {
+          ambientParticles.push({
+            x: Math.random() * ambientWidth,
+            y: Math.random() * ambientHeight,
+            size: 1 + Math.random() * 2.2,
+            speed: .18 + Math.random() * .42,
+            drift: (Math.random() - .5) * .28,
+            phase: Math.random() * Math.PI * 2,
+            alpha: .2 + Math.random() * .35,
+            petal: Math.random() < .18,
+            rotation: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function drawAmbientParticles(time, step) {
+        ambientParticles.forEach(particle => {
+          particle.y += particle.speed * step;
+          particle.x += (particle.drift + Math.sin(time * .00035 + particle.phase) * .13) * step;
+          particle.rotation += .002 * step;
+          if (particle.y > ambientHeight + 12) {
+            particle.y = -12;
+            particle.x = Math.random() * ambientWidth;
+          }
+          if (particle.x < -12) particle.x = ambientWidth + 8;
+          if (particle.x > ambientWidth + 12) particle.x = -8;
+
+          const twinkle = .65 + Math.sin(time * .0014 + particle.phase) * .35;
+          ambientContext.globalAlpha = particle.alpha * twinkle;
+          ambientContext.fillStyle = particle.petal ? "#c4a26a" : "#b08d57";
+          ambientContext.save();
+          ambientContext.translate(particle.x, particle.y);
+          if (particle.petal) {
+            ambientContext.rotate(particle.rotation);
+            ambientContext.beginPath();
+            ambientContext.ellipse(0, 0, particle.size * .62, particle.size * 1.55, 0, 0, Math.PI * 2);
+            ambientContext.fill();
+          } else {
+            ambientContext.beginPath();
+            ambientContext.arc(0, 0, particle.size * (.72 + twinkle * .28), 0, Math.PI * 2);
+            ambientContext.fill();
+          }
+          ambientContext.restore();
+        });
+      }
+
+      function drawCelebration(time, step) {
+        for (let index = celebrationParticles.length - 1; index >= 0; index -= 1) {
+          const particle = celebrationParticles[index];
+          particle.x += particle.vx * step;
+          particle.y += particle.vy * step;
+          particle.vy += .12 * step;
+          particle.rotation += particle.spin * step;
+          particle.life -= step / 60;
+          if (particle.life <= 0) {
+            celebrationParticles.splice(index, 1);
+            continue;
+          }
+
+          ambientContext.save();
+          ambientContext.globalAlpha = Math.min(1, particle.life / particle.duration);
+          ambientContext.translate(particle.x, particle.y);
+          ambientContext.rotate(particle.rotation);
+          ambientContext.fillStyle = particle.color;
+          if (particle.heart) {
+            const size = particle.size;
+            ambientContext.beginPath();
+            ambientContext.moveTo(0, size * .34);
+            ambientContext.bezierCurveTo(-size * 1.2, -size * .35, -size * .65, -size * .95, 0, -size * .35);
+            ambientContext.bezierCurveTo(size * .65, -size * .95, size * 1.2, -size * .35, 0, size * .34);
+            ambientContext.fill();
+          } else {
+            ambientContext.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size * .55);
+          }
+          ambientContext.restore();
+        }
+      }
+
+      function renderAmbient(time) {
+        ambientFrame = 0;
+        if (document.hidden || prefersReducedMotion || !ambientContext) return;
+        const step = previousFrameTime ? Math.min((time - previousFrameTime) / 16.67, 2) : 1;
+        previousFrameTime = time;
+        ambientContext.clearRect(0, 0, ambientWidth, ambientHeight);
+        drawAmbientParticles(time, step);
+        drawCelebration(time, step);
+        ambientFrame = window.requestAnimationFrame(renderAmbient);
+      }
+
+      function runAmbient() {
+        if (!ambientFrame && !document.hidden && !prefersReducedMotion && ambientContext) {
+          ambientFrame = window.requestAnimationFrame(renderAmbient);
+        }
+      }
+
+      function celebrate(source) {
+        if (prefersReducedMotion || !ambientContext) return;
+        const bounds = source.getBoundingClientRect();
+        const originX = bounds.left + bounds.width / 2;
+        const originY = bounds.top + bounds.height / 2;
+        const colors = ["#B08D57", "#D5B979", "#E6DFD3", "#9E7541"];
+        for (let index = 0; index < 34; index += 1) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 2 + Math.random() * 5;
+          const duration = .9 + Math.random() * .7;
+          celebrationParticles.push({
+            x: originX,
+            y: originY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2,
+            rotation: Math.random() * Math.PI,
+            spin: (Math.random() - .5) * .2,
+            size: 3 + Math.random() * 5,
+            color: colors[index % colors.length],
+            heart: index % 4 === 0,
+            life: duration,
+            duration
+          });
+        }
+        runAmbient();
+      }
+
+      if (ambientContext) {
+        resizeAmbientCanvas();
+        startAmbientParticles();
+        runAmbient();
+        window.addEventListener("resize", resizeAmbientCanvas, { passive: true });
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            window.cancelAnimationFrame(ambientFrame);
+            ambientFrame = 0;
+            previousFrameTime = 0;
+          } else {
+            runAmbient();
+          }
+        });
+      }
+
+      const searchParams = new URLSearchParams(window.location.search);
+      const guestParam = searchParams.get("guest");
+      const guestName = (guestParam && guestParam.trim()) || searchParams.get("ten") || "";
+      $("#guest-name").textContent = guestName.trim().replace(/\s+/g, " ").slice(0, 80) || "Quý Khách và Gia Đình";
+
+      function showToast(message) {
+        const toast = $("#toast");
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
+      }
+
+      function updateCountdown() {
+        const distance = weddingDate.getTime() - Date.now();
+        const countdown = $("#countdown");
+        if (distance <= 0) {
+          countdown.innerHTML = '<span class="text-xs tracking-[.12em]">HÔM NAY LÀ NGÀY VUI!</span>';
+          return;
+        }
+        const units = [
+          ["Ngày", Math.floor(distance / 86400000)],
+          ["Giờ", Math.floor((distance % 86400000) / 3600000)],
+          ["Phút", Math.floor((distance % 3600000) / 60000)],
+          ["Giây", Math.floor((distance % 60000) / 1000)]
+        ];
+        countdown.innerHTML = units.map(([label, value]) => `<div class="countdown-cell"><span class="countdown-number">${String(value).padStart(2, "0")}</span><span class="mt-2 block text-[11px] tracking-[.12em] text-white/85">${label}</span></div>`).join("");
+      }
+      updateCountdown();
+      window.setInterval(updateCountdown, 1000);
+
+      const calendar = $("#calendar");
+      for (let day = 1; day <= 30; day += 1) {
+        const cell = document.createElement("span");
+        cell.className = "calendar-day" + (day === 28 ? " special-28" : "") + (day === 29 ? " special-29" : "");
+        cell.textContent = String(day);
+        if (day === 28) cell.setAttribute("aria-label", "Ngày 28, Bữa cơm thân mật");
+        if (day === 29) cell.setAttribute("aria-label", "Ngày 29, Lễ Vu Quy");
+        calendar.append(cell);
+      }
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      $$(".reveal, .botanical").forEach(element => revealObserver.observe(element));
+
+      const activeOscillators = [];
+      let masterGain = null;
+
+      function playNote() {
+        if (!audioContext || !musicOn || !masterGain) return;
+        try {
+          const oscillator = audioContext.createOscillator();
+          const noteGain = audioContext.createGain();
+          const now = audioContext.currentTime;
+          oscillator.type = "sine";
+          oscillator.frequency.value = notes[noteIndex % notes.length];
+          noteIndex += 1;
+          noteGain.gain.setValueAtTime(0.0001, now);
+          noteGain.gain.exponentialRampToValueAtTime(0.035, now + 0.08);
+          noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+          oscillator.connect(noteGain);
+          noteGain.connect(masterGain);
+          oscillator.start(now);
+          oscillator.stop(now + 1.85);
+
+          activeOscillators.push(oscillator);
+          oscillator.onended = () => {
+            const idx = activeOscillators.indexOf(oscillator);
+            if (idx > -1) activeOscillators.splice(idx, 1);
+          };
+        } catch (e) {
+          // ignore error
+        }
+      }
+
+      function stopAllAudio() {
+        if (musicTimer) {
+          window.clearInterval(musicTimer);
+          musicTimer = null;
+        }
+        if (masterGain && audioContext) {
+          try {
+            masterGain.gain.setValueAtTime(0, audioContext.currentTime);
+          } catch (e) {}
+        }
+        while (activeOscillators.length > 0) {
+          const osc = activeOscillators.pop();
+          try {
+            osc.stop();
+            osc.disconnect();
+          } catch (e) {}
+        }
+      }
+
+      async function toggleMusic(forcePlay = null) {
+        try {
+          if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioContext.createGain();
+            masterGain.connect(audioContext.destination);
+          }
+          if (audioContext.state === "suspended") await audioContext.resume();
+
+          const shouldPlay = forcePlay !== null ? forcePlay : !musicOn;
+          musicOn = shouldPlay;
+
+          const toggleBtn = $("#music-toggle");
+          if (musicOn) {
+            masterGain.gain.setValueAtTime(1, audioContext.currentTime);
+            playNote();
+            if (musicTimer) window.clearInterval(musicTimer);
+            musicTimer = window.setInterval(playNote, 850);
+            toggleBtn.setAttribute("aria-label", "Tắt nhạc nền");
+            toggleBtn.setAttribute("title", "Tắt nhạc nền");
+            toggleBtn.classList.add("is-playing");
+            toggleBtn.classList.remove("is-muted");
+          } else {
+            stopAllAudio();
+            toggleBtn.setAttribute("aria-label", "Bật nhạc nền");
+            toggleBtn.setAttribute("title", "Bật nhạc nền");
+            toggleBtn.classList.remove("is-playing");
+            toggleBtn.classList.add("is-muted");
+          }
+        } catch (error) {
+          showToast("Thiết bị chưa thể phát nhạc nền.");
+        }
+      }
+
+      $("#open-cover").addEventListener("click", () => {
+        $("#cover").classList.add("is-open");
+        toggleMusic(true);
+      });
+      $("#music-toggle").addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleMusic();
+      });
+
+      const wishKey = "wedding-wishes-ngoc-anh-nguyen-van";
+      function readWishes() {
+        try {
+          const value = JSON.parse(localStorage.getItem(wishKey) || "[]");
+          return Array.isArray(value) ? value.filter(item => item && typeof item.name === "string" && typeof item.message === "string") : [];
+        } catch (error) {
+          showToast("Không thể đọc sổ lưu bút trên thiết bị này.");
+          return [];
+        }
+      }
+      function renderWishes() {
+        const wishes = readWishes();
+        const container = $("#wishes");
+        container.replaceChildren();
+        $("#empty-wishes").classList.toggle("hidden", wishes.length > 0);
+        wishes.slice().reverse().forEach(wish => {
+          const card = document.createElement("article");
+          card.className = "border-l-2 border-gold bg-white p-4 rounded-r-md shadow-sm";
+          const name = document.createElement("p");
+          name.className = "text-sm font-semibold font-serif text-ink";
+          name.textContent = wish.name;
+          const message = document.createElement("p");
+          message.className = "mt-1.5 whitespace-pre-wrap break-words text-sm font-serif font-normal leading-6 text-ink/80 italic";
+          message.textContent = `“${wish.message}”`;
+          const attendance = document.createElement("p");
+          attendance.className = "mt-2 text-[11px] font-sans font-medium text-golddeep tracking-wide";
+          attendance.textContent = wish.attendance === "yes" ? `✓ Sẽ tham dự · ${wish.attendees} người` : "✕ Rất tiếc không thể tham dự";
+          card.append(name, message, attendance);
+          container.append(card);
+        });
+      }
+      renderWishes();
+
+      $("#rsvp-form").addEventListener("submit", async event => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const wish = {
+          name: String(formData.get("guestName") || "").trim(),
+          phone: String(formData.get("phone") || "").trim(),
+          attendees: Number(formData.get("attendees")),
+          attendance: String(formData.get("attendance")),
+          message: String(formData.get("message") || "").trim()
+        };
+        if (!wish.name || !wish.phone || !wish.message) {
+          showToast("Vui lòng nhập tên, số điện thoại và lời chúc của bạn.");
+          return;
+        }
+        if (!RSVP_WEBHOOK_URL) {
+          showToast("Thiệp chưa được cấu hình RSVP. Vui lòng liên hệ gia đình.");
+          return;
+        }
+
+        const submitButton = $('button[type="submit"]', form);
+        submitButton.disabled = true;
+        try {
+          await fetch(RSVP_WEBHOOK_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(wish)
+          });
+
+          const wishes = readWishes();
+          wishes.push(wish);
+          let locallySaved = true;
+          try {
+            localStorage.setItem(wishKey, JSON.stringify(wishes.slice(-50)));
+          } catch (error) {
+            locallySaved = false;
+          }
+          renderWishes();
+          form.reset();
+          celebrate(submitButton);
+          showToast(locallySaved
+            ? "Cảm ơn bạn! Lời xác nhận và lời chúc đã được gửi."
+            : "Cảm ơn bạn! RSVP đã gửi đi, nhưng thiết bị không lưu được sổ lưu bút.");
+        } catch (error) {
+          showToast("Chưa gửi được RSVP. Vui lòng kiểm tra kết nối và thử lại.");
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+
+      function openModal(modal) {
+        modal.classList.add("is-open");
+        document.body.classList.add("modal-open");
+        const closeButton = $(".modal-close", modal);
+        if (closeButton) closeButton.focus();
+      }
+      function closeModal(modal) {
+        modal.classList.remove("is-open");
+        document.body.classList.remove("modal-open");
+        if (modal.id === "link-modal" && window.location.hash === "#tao-link") {
+          window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+      }
+      $$(".modal-close").forEach(button => button.addEventListener("click", () => closeModal(button.closest(".modal"))));
+      $$(".modal").forEach(modal => {
+        modal.addEventListener("click", event => {
+          if (event.target === modal) closeModal(modal);
+        });
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") $$(".modal.is-open").forEach(closeModal);
+      });
+
+      $$("#gallery [data-image]").forEach(button => {
+        button.addEventListener("click", () => {
+          $("#lightbox-img").src = button.dataset.image;
+          $("#lightbox-img").alt = $("img", button).alt;
+          openModal($("#lightbox"));
+        });
+      });
+      const giftOpenBtn = $("#gift-open");
+      if (giftOpenBtn) {
+        giftOpenBtn.addEventListener("click", () => openModal($("#gift-modal")));
+      }
+
+      const linkGuestInput = $("#link-guest-name");
+      const inviteLinkInput = $("#invite-link");
+      const copyInviteLinkButton = $("#copy-invite-link");
+      function updateInviteLink() {
+        const name = linkGuestInput.value.trim().replace(/\s+/g, " ").slice(0, 80);
+        if (!name) {
+          inviteLinkInput.value = "";
+          copyInviteLinkButton.disabled = true;
+          return;
+        }
+        const inviteUrl = new URL(window.location.href);
+        inviteUrl.hash = "";
+        inviteUrl.searchParams.delete("ten");
+        inviteUrl.searchParams.set("guest", name);
+        inviteLinkInput.value = inviteUrl.toString();
+        copyInviteLinkButton.disabled = false;
+      }
+      linkGuestInput.addEventListener("input", updateInviteLink);
+      copyInviteLinkButton.addEventListener("click", async () => {
+        if (!inviteLinkInput.value) return;
+        try {
+          await navigator.clipboard.writeText(inviteLinkInput.value);
+          showToast("Đã sao chép link mời. Bạn có thể gửi qua Zalo!");
+        } catch (error) {
+          inviteLinkInput.focus();
+          inviteLinkInput.select();
+          showToast("Không thể sao chép tự động. Hãy sao chép đường link đang chọn.");
+        }
+      });
+      function syncLinkModal() {
+        if (window.location.hash === "#tao-link") {
+          openModal($("#link-modal"));
+        } else if ($("#link-modal").classList.contains("is-open")) {
+          closeModal($("#link-modal"));
+        }
+      }
+      window.addEventListener("hashchange", syncLinkModal);
+      syncLinkModal();
+
+      const qrPattern = [
+        "11111110001", "10000010101", "10111010111", "10111010001", "10111011101", "10000010010", "11111110111",
+        "00010000100", "11010110111", "01001101001", "11101011101"
+      ];
+      const qr = $("#gift-qr");
+      qrPattern.forEach(row => Array.from(row).forEach(bit => {
+        const cell = document.createElement("span");
+        if (bit === "1") cell.className = "bg-ink";
+        qr.append(cell);
+      }));
+      $("#copy-account").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText($("#account-number").textContent);
+          showToast("Đã sao chép thông tin minh họa.");
+        } catch (error) {
+          showToast("Thiết bị không hỗ trợ sao chép tự động.");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
