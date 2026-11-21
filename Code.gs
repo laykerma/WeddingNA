@@ -1,4 +1,4 @@
-const SPREADSHEET_ID = "PASTE_YOUR_GOOGLE_SHEET_ID_HERE";
+const SPREADSHEET_ID = "1aapVSw0-qTax7zdaSFh0s5tQdeb72fAgMxKIIoTShEc";
 const SHEET_NAME = "RSVP";
 
 function doPost(e) {

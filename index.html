@@ -742,11 +742,6 @@
 
     <section class="section-pad">
       <div class="reveal mx-auto max-w-5xl">
-        <div class="mb-10 text-center">
-          <p class="eyebrow text-golddeep">A few moments together</p>
-          <h2 class="section-title mt-4">Album ảnh cưới</h2>
-          <div class="gold-rule mt-4 text-sm">✦</div>
-        </div>
         <div id="gallery" class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
           <button class="gallery-card stagger-item group relative aspect-[4/5] text-left" data-image="./image/1.jpg" aria-label="Xem ảnh cưới 1"><img class="h-full w-full object-cover" src="./image/1.jpg" alt="Chân dung cô dâu Ngọc Anh" loading="lazy"><span class="absolute bottom-3 left-3 font-script text-2xl text-white drop-shadow">Our beginning</span></button>
           <button class="gallery-card stagger-item group relative aspect-[4/5] text-left md:mt-10" data-image="./image/3.jpg" aria-label="Xem ảnh cưới 2"><img class="h-full w-full object-cover" src="./image/3.jpg" alt="Ngọc Anh và Nguyễn Văn trong lễ phục cưới" loading="lazy"></button>
@@ -878,7 +873,7 @@
       let musicOn = false;
       let noteIndex = 0;
       const notes = [261.63, 329.63, 392, 329.63, 293.66, 349.23, 440, 349.23];
-      const RSVP_WEBHOOK_URL = "";
+      const RSVP_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxDC3h_TVeRx7I3X_UeclD9sXzfsDvWjGPmGjgiDNfS_sOv0YntuFfODsXqJC7og1KWtg/exec";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const ambientCanvas = $("#ambient-canvas");
       const ambientContext = ambientCanvas.getContext("2d", { alpha: true });
