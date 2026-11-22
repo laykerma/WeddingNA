@@ -946,6 +946,7 @@
     </div>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <audio id="bg-music" src="./audio/leduong.mp3" loop preload="auto"></audio>
 
   <script>
     (() => {
@@ -953,11 +954,9 @@
       const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
       const weddingDate = new Date("2026-11-29T07:05:00+07:00");
       let toastTimer;
-      let audioContext;
-      let musicTimer;
       let musicOn = false;
-      let noteIndex = 0;
-      const notes = [261.63, 329.63, 392, 329.63, 293.66, 349.23, 440, 349.23];
+      const bgMusic = $("#bg-music");
+      if (bgMusic) bgMusic.volume = 0.7;
       const RSVP_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxT6th8H9mIGR7OYIJo825EAVbEinaKYWUcZmqLZWG1QNNQSNSr4tUxJuXvMk2zq0W8lg/exec";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const ambientCanvas = $("#ambient-canvas");
@@ -1170,86 +1169,41 @@
       }, { threshold: 0.12 });
       $$(".reveal, .botanical").forEach(element => revealObserver.observe(element));
 
-      const activeOscillators = [];
-      let masterGain = null;
-
-      function playNote() {
-        if (!audioContext || !musicOn || !masterGain) return;
-        try {
-          const oscillator = audioContext.createOscillator();
-          const noteGain = audioContext.createGain();
-          const now = audioContext.currentTime;
-          oscillator.type = "sine";
-          oscillator.frequency.value = notes[noteIndex % notes.length];
-          noteIndex += 1;
-          noteGain.gain.setValueAtTime(0.0001, now);
-          noteGain.gain.exponentialRampToValueAtTime(0.035, now + 0.08);
-          noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
-          oscillator.connect(noteGain);
-          noteGain.connect(masterGain);
-          oscillator.start(now);
-          oscillator.stop(now + 1.85);
-
-          activeOscillators.push(oscillator);
-          oscillator.onended = () => {
-            const idx = activeOscillators.indexOf(oscillator);
-            if (idx > -1) activeOscillators.splice(idx, 1);
-          };
-        } catch (e) {
-          // ignore error
+      const toggleBtn = $("#music-toggle");
+      function syncMusicUI(playing) {
+        musicOn = playing;
+        if (playing) {
+          toggleBtn.setAttribute("aria-label", "Tắt nhạc nền");
+          toggleBtn.setAttribute("title", "Tắt nhạc nền");
+          toggleBtn.classList.add("is-playing");
+          toggleBtn.classList.remove("is-muted");
+        } else {
+          toggleBtn.setAttribute("aria-label", "Bật nhạc nền");
+          toggleBtn.setAttribute("title", "Bật nhạc nền");
+          toggleBtn.classList.remove("is-playing");
+          toggleBtn.classList.add("is-muted");
         }
       }
 
-      function stopAllAudio() {
-        if (musicTimer) {
-          window.clearInterval(musicTimer);
-          musicTimer = null;
-        }
-        if (masterGain && audioContext) {
-          try {
-            masterGain.gain.setValueAtTime(0, audioContext.currentTime);
-          } catch (e) {}
-        }
-        while (activeOscillators.length > 0) {
-          const osc = activeOscillators.pop();
-          try {
-            osc.stop();
-            osc.disconnect();
-          } catch (e) {}
-        }
+      if (bgMusic) {
+        bgMusic.addEventListener("play", () => syncMusicUI(true));
+        bgMusic.addEventListener("pause", () => syncMusicUI(false));
       }
 
       async function toggleMusic(forcePlay = null) {
+        if (!bgMusic) return;
+        const shouldPlay = forcePlay !== null ? forcePlay : !musicOn;
         try {
-          if (!audioContext) {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            masterGain = audioContext.createGain();
-            masterGain.connect(audioContext.destination);
-          }
-          if (audioContext.state === "suspended") await audioContext.resume();
-
-          const shouldPlay = forcePlay !== null ? forcePlay : !musicOn;
-          musicOn = shouldPlay;
-
-          const toggleBtn = $("#music-toggle");
-          if (musicOn) {
-            masterGain.gain.setValueAtTime(1, audioContext.currentTime);
-            playNote();
-            if (musicTimer) window.clearInterval(musicTimer);
-            musicTimer = window.setInterval(playNote, 850);
-            toggleBtn.setAttribute("aria-label", "Tắt nhạc nền");
-            toggleBtn.setAttribute("title", "Tắt nhạc nền");
-            toggleBtn.classList.add("is-playing");
-            toggleBtn.classList.remove("is-muted");
+          if (shouldPlay) {
+            await bgMusic.play();
+            syncMusicUI(true);
           } else {
-            stopAllAudio();
-            toggleBtn.setAttribute("aria-label", "Bật nhạc nền");
-            toggleBtn.setAttribute("title", "Bật nhạc nền");
-            toggleBtn.classList.remove("is-playing");
-            toggleBtn.classList.add("is-muted");
+            bgMusic.pause();
+            syncMusicUI(false);
           }
         } catch (error) {
-          showToast("Thiết bị chưa thể phát nhạc nền.");
+          syncMusicUI(false);
+          showToast("Chạm vào biểu tượng đĩa nhạc góc trên để bật nhạc nền.");
         }
       }
 
