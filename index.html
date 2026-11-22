@@ -233,8 +233,8 @@
     .hero-image {
       min-height: 100vh;
       background:
-        linear-gradient(180deg, rgba(20, 16, 14, .25) 0%, rgba(20, 16, 14, .05) 30%, rgba(20, 16, 14, .3) 65%, rgba(20, 16, 14, .75) 100%),
-        url("./image/hero-wide.jpg?v=3") center top / cover no-repeat,
+        linear-gradient(180deg, rgba(20, 16, 14, .18) 0%, rgba(20, 16, 14, 0) 30%, rgba(20, 16, 14, .25) 65%, rgba(20, 16, 14, .7) 100%),
+        url("./image/hero-wide.jpg?v=4") center top / cover no-repeat,
         #75695c;
     }
     .hero-script {
@@ -242,7 +242,7 @@
       display: inline-block;
       overflow: hidden;
       font-family: "Dancing Script", cursive;
-      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-size: clamp(2.2rem, 5.5vw, 3.5rem);
       font-weight: 700;
       line-height: 1.05;
       text-shadow: 0 2px 14px rgba(0,0,0,.6);
@@ -654,33 +654,37 @@
   </button>
 
   <main>
-    <section class="hero-image relative flex min-h-screen flex-col justify-between px-5 pt-10 pb-6 md:pt-14 md:pb-8 text-center text-white">
-      <div class="absolute inset-4 border border-white/30 md:inset-8 z-10 pointer-events-none"></div>
+    <section class="hero-image relative flex min-h-screen flex-col justify-end px-4 pb-8 md:pb-12 text-center text-white">
+      <div class="absolute inset-4 border border-white/25 md:inset-8 z-10 pointer-events-none"></div>
 
-      <!-- Phần trên đỉnh: Trân trọng kính mời & Tên khách -->
-      <div class="relative z-10 mx-auto w-full max-w-3xl pt-2">
-        <p class="eyebrow text-white/90">Trân trọng kính mời</p>
-        <p id="guest-name" class="mt-2 font-script text-3xl text-[#e2c58d] md:text-4xl">Quý Khách và Gia Đình</p>
-      </div>
+      <!-- Khối thiệp chuyển hoàn toàn xuống phía dưới váy cưới, giải phóng 100% gương mặt cô dâu chú rể -->
+      <div class="relative z-10 mx-auto w-full max-w-2xl px-5 py-5 sm:px-8 sm:py-6 rounded-2xl bg-black/40 backdrop-blur-md border border-white/20 shadow-2xl">
+        <!-- Dòng kính mời & Tên khách mời -->
+        <p class="eyebrow text-white/90 tracking-[.25em] text-[10px] sm:text-xs">TRÂN TRỌNG KÍNH MỜI</p>
+        <p id="guest-name" class="mt-1 font-script text-2xl sm:text-3xl text-[#f5deb3]">Quý Khách và Gia Đình</p>
+        
+        <div class="my-2.5 mx-auto h-px w-16 bg-white/30"></div>
 
-      <!-- Phần khoảng giữa: Để trống hoàn toàn khoe trọn gương mặt, nụ cười và thần thái cô dâu chú rể -->
-      <div class="flex-1 min-h-[160px] md:min-h-[260px]"></div>
-
-      <!-- Phần chân ảnh: Tên cô dâu chú rể hạ thấp xuống phần váy/hoa, tuyệt đối không chạm mặt -->
-      <div class="relative z-10 mx-auto w-full max-w-3xl pb-2">
-        <div class="flex flex-col items-center justify-center gap-1 md:flex-row md:gap-5">
+        <!-- Tên Chú rể & Cô dâu -->
+        <div class="flex items-center justify-center gap-2 sm:gap-4">
           <h1 class="hero-script shimmer-text" data-shimmer="Nguyễn Văn" aria-label="Nguyễn Văn">Nguyễn Văn</h1>
-          <span class="my-0 text-xl text-[#e2c58d]">♥</span>
+          <span class="text-lg sm:text-xl text-[#f5deb3]">♥</span>
           <h2 class="hero-script shimmer-text" data-shimmer="Ngọc Anh" aria-label="Ngọc Anh">Ngọc Anh</h2>
         </div>
+
+        <!-- Ngày cưới -->
         <p class="mt-2 text-xs font-light tracking-[.25em] text-white/90 uppercase">Chủ Nhật · 29 Tháng 11 · 2026</p>
         
-        <div class="mx-auto mt-4 w-fit border-y border-white/30 py-2.5 px-6 bg-black/25 backdrop-blur-sm rounded-sm">
-          <p class="mb-1.5 text-[8px] tracking-[.3em] text-white/75 uppercase">Chỉ còn</p>
-          <div id="countdown" class="flex items-center gap-4 sm:gap-7" aria-label="Đếm ngược đến lễ cưới"></div>
+        <!-- Đồng hồ đếm ngược -->
+        <div class="mx-auto mt-3 w-fit border-y border-white/25 py-2 px-4 sm:px-6">
+          <p class="mb-1 text-[8px] tracking-[.3em] text-white/75 uppercase">Chỉ còn</p>
+          <div id="countdown" class="flex items-center gap-3 sm:gap-6" aria-label="Đếm ngược đến lễ cưới"></div>
         </div>
 
-        <a href="#loi-moi" class="mt-4 inline-flex items-center gap-2 text-xs font-medium tracking-[.15em] text-white/90 hover:text-white transition">KHÁM PHÁ THIỆP <span aria-hidden="true">↓</span></a>
+        <!-- Nút khám phá thiệp -->
+        <a href="#loi-moi" class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-medium tracking-[.15em] text-white/90 hover:text-white transition">
+          KHÁM PHÁ THIỆP <span aria-hidden="true">↓</span>
+        </a>
       </div>
     </section>
 
